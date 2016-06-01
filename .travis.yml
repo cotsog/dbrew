@@ -10,7 +10,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
-      env: CXX=g++-4.9 CC=gcc-4.9
+      env:
+          - COMPILERCXX=g++-4.9
+          - COMPILERC=gcc-4.9
     - compiler: gcc
       addons:
         apt:
@@ -18,7 +20,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
-      env: CXX=g++-5 CC=gcc-5
+      env:
+          - COMPILERCXX=g++-5
+          - COMPILERC=gcc-5
     - compiler: gcc
       addons:
         apt:
@@ -26,7 +30,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
-      env: CXX=g++-6 CC=gcc-6
+      env:
+          - COMPILERCXX=g++-6
+          - COMPILERC=gcc-6
     - compiler: clang
       addons:
         apt:
@@ -35,7 +41,9 @@ matrix:
             - llvm-toolchain-precise-3.6
           packages:
             - clang-3.6
-      env: CXX=clang++-3.6 CC=clang-3.6
+      env:
+          - COMPILERCXX=clang++-3.6
+          - COMPILERC=clang-3.6
     - compiler: clang
       addons:
         apt:
@@ -44,8 +52,9 @@ matrix:
             - llvm-toolchain-precise-3.7
           packages:
             - clang-3.7
-      env: CXX=clang++-3.7 CC=clang-3.7
-
+      env:
+          - COMPILERCXX=clang++-3.7
+          - COMPILERC=clang-3.7
 os:
     - linux
 
@@ -55,6 +64,8 @@ before_install:
 
 # build and test
 script:
+    - CC=$COMPILERC
+    - CXX=$COMPILERCXX
     - $CC --version
     - make CI=1
     - make test
