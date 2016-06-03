@@ -26,8 +26,6 @@ matrix:
       env: CC=clang-3.6
     - compiler: clang
       env: CC=clang-3.7
-os:
-    - linux
 
 # install "python3" used in the test script
 before_install:
